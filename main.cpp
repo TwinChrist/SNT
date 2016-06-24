@@ -1,3 +1,5 @@
+//https://github.com/TwinChrist/SNT.git
+
 #include "staque.h"
 
 #include <iostream>
@@ -23,15 +25,17 @@ int main(int argc, char *argv[])
     staque.print(/*true*/);
     cout << endl;
     while(!staque.empty()) {
-        if(!staque.empty()) cout << staque.count() << " - " << staque.pop()    << endl;
         if(!staque.empty()) cout << staque.count() << " - " << staque.dequeue() << endl;
+        if(!staque.empty()) cout << staque.count() << " - " << staque.pop()    << endl;
     }
 
     return 0;
 }
 
+// O-Notation for both is the same and is O(N^2)
+
 //--------------------------------------------------------
-int function(int n)
+int function(int n)                     // O(N^2)
 {
     int intArray[n];
     int arraySum = 0;
@@ -41,17 +45,17 @@ int function(int n)
         intArray[i] = i;
         for(int j = 1; j < n; j++)
         {
-            intArray[i] *= j;                       // 1
-            cout << intArray[i] << '\t';
+            intArray[i] *= j;
+            //cout << intArray[i] << '\t';
         }
-        arraySum += intArray[i];                    // 2
-        cout << endl;
+        arraySum += intArray[i];
+        //cout << endl;
     }
     return arraySum;
 }
 
 //--------------------------------------------------------
-int function_Orginal(int n)
+int function_Orginal(int n)             // O(max(N^2,N) -> O(N^2)
 {
     int intArray[n];
     int arraySum = 0;
@@ -61,11 +65,10 @@ int function_Orginal(int n)
         intArray[i] = i;
         for(int j = 1;j<n;j++)
         {
-            intArray[i] = j * intArray[i];          // 1
+            intArray[i] = j * intArray[i];
         }
     }
 
-    // 2
     for(int k = 0;k<n;k++)
     {
         arraySum += intArray[k];
